@@ -9,20 +9,16 @@ from browser_use.controller.registry.views import ActionModel
 from langchain.tools import BaseTool
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from pydantic import BaseModel, Field, create_model
-from pydantic.v1 import BaseModel, Field
 
 logger = logging.getLogger(__name__)
 
 
 async def setup_mcp_client_and_tools(mcp_server_config: Dict[str, Any]) -> Optional[MultiServerMCPClient]:
     """
-    Initializes the MultiServerMCPClient, connects to servers, fetches tools,
-    filters them, and returns a flat list of usable tools and the client instance.
+    Initializes the MultiServerMCPClient, connects to servers, and returns the client instance.
 
     Returns:
-        A tuple containing:
-        - list[BaseTool]: The filtered list of usable LangChain tools.
-        - MultiServerMCPClient | None: The initialized and started client instance, or None on failure.
+        MultiServerMCPClient | None: The initialized and started client instance, or None on failure.
     """
 
     logger.info("Initializing MultiServerMCPClient...")
